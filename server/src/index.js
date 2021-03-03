@@ -1,8 +1,10 @@
 import bodyParser from 'body-parser'
+import cors from 'cors'
 import session from 'express-session'
 import { app } from './server'
 import { connectDb, errorDb } from './services/db'
 import userRoute from './resources/user/user.router'
+import historyRoute from './resources/history/history.router'
 
 connectDb
   .then(() => console.log('DB Connected'))
@@ -18,6 +20,7 @@ const server = app.listen(port, () => {
 })
 
 // Middleware
+app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(
@@ -34,6 +37,7 @@ app.get('/status', (req, res) => {
   res.send('server online')
 })
 app.use('/user', userRoute)
+app.use('/history', historyRoute)
 
 process.on('unhandledRejection', e => {
   server.close(() => {

@@ -11,13 +11,9 @@ export const queryUserProfile = async (req, res, next) => {
         err.status = 400
         return next(err)
       } else {
-        return res.send(
-          '<h1>Name: </h1>' +
-            user.username +
-            '<h2>Mail: </h2>' +
-            user.email +
-            '<br><a type="button" href="/logout">Logout</a>',
-        )
+        return res
+          .status(200)
+          .json({ username: user.username, email: user.email })
       }
     }
   })
@@ -52,6 +48,14 @@ export const queryAllUsers = async () => {
   try {
     const allUSer = await UserModel.find()
     return allUSer
+  } catch (error) {
+    return error
+  }
+}
+
+export const queryAuthStatus = async (req, res, next) => {
+  try {
+    res.status(200).json({ Auth: { loggedIn: true } })
   } catch (error) {
     return error
   }
