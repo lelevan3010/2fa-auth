@@ -75,7 +75,7 @@ function CalendarForm() {
             {({ handleChange, values, setFieldValue, resetForm }) => (
               <Form className={classes.form}>
                 <Grid container spacing={3}>
-                  <Grid item xs={4} md={3}>
+                  <Grid item xs={12} md={3}>
                     <Autocomplete
                       size="small"
                       id="day-selector"
@@ -100,7 +100,7 @@ function CalendarForm() {
                       )}
                     />
                   </Grid>
-                  <Grid item xs={8} md={6}>
+                  <Grid item xs={12} md={6}>
                     <Autocomplete
                       multiple
                       limitTags={3}

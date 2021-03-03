@@ -10,13 +10,13 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import {
   makeStyles,
   useTheme,
   Theme,
   createStyles,
 } from "@material-ui/core/styles";
+import SignOutButton from "../SignOutButton/SignOutButton";
 
 const drawerWidth = 240;
 
@@ -83,7 +83,7 @@ export default function Navbar({ children }: any) {
           <Typography variant="h6" noWrap>
             Weekly Meal Planner
           </Typography>
-          <Button>Sign Out</Button>
+          <SignOutButton />
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">
