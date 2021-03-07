@@ -1,7 +1,7 @@
 import React, { createContext, useReducer, Dispatch } from "react";
 import { reducer } from "./Reducer";
 
-type Action = { type: string; payload: {} };
+type Action = { type: String; payload: {} };
 
 interface AuthContext {
   Auth: { loggedIn: Boolean; invalidToken?: Boolean };

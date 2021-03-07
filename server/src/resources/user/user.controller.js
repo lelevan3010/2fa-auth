@@ -4,8 +4,10 @@ import {
   logginUser,
   queryUserProfile,
   queryAuthStatus,
+  queryMfaStatus,
+  getMfaQrCode,
+  verifyOtpPin
 } from './user.service'
-import { generateToken } from '../../utils/generateToken'
 import { validationResult } from 'express-validator'
 
 export const getAllUsers = async (req, res) => {
@@ -38,7 +40,9 @@ export const signupUser = async (req, res) => {
         _id: user._id,
       },
     }
-    generateToken(payload, 3600, res)
+    
+    res.status(200).json(payload)
+    // generateToken(payload, 3600, res)
   } catch (error) {
     res.status(400).json({ error: 'cannot create user' })
   }
@@ -59,8 +63,9 @@ export const loginUser = async (req, res, next) => {
             _id: user._id,
           },
         }
-
-        generateToken(payload, 3600, res)
+        
+        res.status(200).json(payload)
+        // generateToken(payload, 3600, res)
       }
     })
   } catch (error) {
@@ -73,5 +78,29 @@ export const checkAuthStatus = async (req, res, next) => {
     await queryAuthStatus(req, res, next)
   } catch (error) {
     res.status(400).json({ error: 'error get auth status' + error })
+  }
+}
+
+export const checkMfaStatus = async (req, res, next) => {
+  try {
+    await queryMfaStatus(req, res, next)
+  } catch (error) {
+    res.status(400).json({ error: 'error get mfa status' + error })
+  }
+}
+
+export const generateMfaQrCode = async (req, res, next) => {
+  try {
+    await getMfaQrCode(req, res, next)
+  } catch (error) {
+    res.status(400).json({ error: 'error get mfa QR code' + error })
+  }
+}
+
+export const verifyOtp = async (req, res, next) => {
+  try {
+    await verifyOtpPin(req, res, next)
+  } catch (error) {
+    res.status(400).json({ error: 'error get mfa QR code' + error })
   }
 }

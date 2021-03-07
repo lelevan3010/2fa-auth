@@ -10,6 +10,9 @@ router.route('/').get(UserController.getAllUsers)
 router.route('/login').post(UserController.loginUser)
 router.route('/profile').get(authJWT, UserController.getUserProfile)
 router.route('/check-auth-status').get(authJWT, UserController.checkAuthStatus)
+router.route('/check-mfa-status').get(UserController.checkMfaStatus)
+router.route('/mfa_qr_code').get(UserController.generateMfaQrCode)
+router.route('/verify_otp').get(UserController.verifyOtp)
 router.route('/signup').post([
     check('username').not().isEmpty().custom((value, {req})=>{
         return new Promise((resolve,reject)=>{

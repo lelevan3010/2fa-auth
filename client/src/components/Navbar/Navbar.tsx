@@ -81,7 +81,7 @@ export default function Navbar({ children }: any) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Weekly Meal Planner
+            Know Your Flora
           </Typography>
           <SignOutButton />
         </Toolbar>
@@ -101,7 +101,7 @@ export default function Navbar({ children }: any) {
               keepMounted: true, // Better open performance on mobile.
             }}
           >
-            <Menu />
+            <Menu handleDrawerToggle={handleDrawerToggle} />
           </Drawer>
         </Hidden>
         <Hidden xsDown implementation="css">

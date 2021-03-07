@@ -9,72 +9,86 @@ import Paper from "@material-ui/core/Paper";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    loginForm: {
+    signUpForm: {
       display: "flex",
       flexDirection: "column",
       padding: 30,
     },
-    loginInput: {
+    signUpInput: {
       marginBottom: 20,
     },
-    loginButton: {
+    signUpButton: {
       backgroundColor: "#5373FF",
       color: "white",
     },
   })
 );
 
-function LoginForm({ handleSubmit, errorLoginMsg }: any) {
+function SignUpForm({ handleSubmit, errorSignUpMsg }: any) {
   const classes = useStyles();
 
   return (
     <Paper
       elevation={3}
-      style={{ alignSelf: "center", maxHeight: 400, maxWidth: 300 }}
+      style={{
+        alignSelf: "center",
+        maxHeight: 500,
+        maxWidth: 300,
+        marginTop: "-100px",
+      }}
     >
-      <h3 style={{ textAlign: "center" }}>Login to your account</h3>
+      <h3 style={{ textAlign: "center" }}>Create new account</h3>
       <Formik
-        initialValues={{ logUsername: "", logPassword: "" }}
+        initialValues={{ email: "", username: "", password: "" }}
         onSubmit={handleSubmit}
       >
         {({ isSubmitting, values }) => (
-          <Form className={classes.loginForm}>
+          <Form className={classes.signUpForm}>
+            <Field
+              component={TextField}
+              variant="outlined"
+              label="Email"
+              name="email"
+              type="email"
+              required={true}
+              className={classes.signUpInput}
+            />
             <Field
               component={TextField}
               variant="outlined"
               label="User name"
-              name="logUsername"
+              name="username"
               type="text"
               required={true}
-              className={classes.loginInput}
+              className={classes.signUpInput}
             />
             <Field
               component={TextField}
               variant="outlined"
               label="Password"
-              name="logPassword"
+              name="password"
               type="password"
               required={true}
-              className={classes.loginInput}
+              className={classes.signUpInput}
             />
             <Button
               type="submit"
-              className={classes.loginButton}
+              className={classes.signUpButton}
               disabled={isSubmitting}
             >
-              Log In
+              SignUp
             </Button>
           </Form>
         )}
       </Formik>
       <p style={{ color: "red", textAlign: "center", marginTop: "-10px" }}>
-        {errorLoginMsg}
+        {errorSignUpMsg}
       </p>
       <h4 style={{ textAlign: "center" }}>
-        New member? <Link to="/signup">Sign Up</Link>
+        Have an account? <Link to="/">Log in</Link>
       </h4>
     </Paper>
   );
 }
 
-export default LoginForm;
+export default SignUpForm;

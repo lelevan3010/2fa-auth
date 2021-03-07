@@ -17,16 +17,17 @@ const icons = [
   <HistoryIcon />,
 ];
 
-const listItemRoutes = ["/calendar", "/shopping-list", "/dishes", "/history"];
+const listItemRoutes = ["/identify", "/history"];
 
-const Menu = () => (
+const Menu = ({ handleDrawerToggle }: any) => (
   <div>
     <List>
-      {["Calendar", "Shopping List", "Dishes", "History"].map((text, index) => (
+      {["Identify", "History"].map((text, index) => (
         <Link
           key={index}
           to={listItemRoutes[index]}
           style={{ color: "unset", textDecoration: "unset" }}
+          onClick={handleDrawerToggle}
         >
           <ListItem button key={text}>
             <ListItemIcon>{icons[index]}</ListItemIcon>

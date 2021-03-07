@@ -19,3 +19,11 @@ export const addUserHistory = async (_id, imageURL) => {
     return error
   }
 }
+
+export const removeUserHistory = async _id => {
+  try {
+    return await HistoryModel.findOneAndDelete({ _id: _id })
+  } catch (error) {
+    return error
+  }
+}

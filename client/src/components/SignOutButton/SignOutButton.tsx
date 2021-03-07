@@ -1,18 +1,25 @@
 import React, { useContext } from "react";
-import {Route, Redirect} from 'react-router-dom'
 
-import { AuthContext } from '../../context/auth/AuthContext'
+import { AuthContext } from "../../context/auth/AuthContext";
+import Button from "@material-ui/core/Button";
 
-export default function PrivateRoute({component: Component, path, ...rest}: any) {
-    const {Auth} = useContext(AuthContext)
-    console.log('from private route', Auth);
-    return <Route
-        path={path}
-        render={(props: any)=>(
-                Auth.loggedIn ?
-                (<Component {...props} {...rest}/>) :
-                (<Redirect to='/'/>)
-            )
-        }
-    />
+function SignOutButton() {
+  const { dispatchAuth } = useContext(AuthContext);
+
+  return (
+    <Button
+      style={{ backgroundColor: "#5373ff", color: "white" }}
+      onClick={() => {
+        localStorage.clear();
+        dispatchAuth({
+          type: "LOGOUT",
+          payload: { Auth: { loggedIn: false } },
+        });
+      }}
+    >
+      Sign Out
+    </Button>
+  );
 }
+
+export default SignOutButton;

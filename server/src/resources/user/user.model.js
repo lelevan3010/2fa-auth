@@ -18,6 +18,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  mfaEnabled: {
+    type: Boolean,
+    required: false
+  },
+  mfaSecret: {
+    type: String,
+    required: false
+  }
 })
 
 //hashing a password before saving it to the database

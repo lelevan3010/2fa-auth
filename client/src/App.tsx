@@ -7,32 +7,29 @@ import { theme } from "./Theme";
 
 import Login from "./pages/Login";
 import AppLayout from "./layouts/AppLayout";
-import PrivateRoute from './components/PrivateRoute/PrivateRoute'
-import { AuthProvider } from './context/auth/AuthContext'
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import { AuthProvider } from "./context/auth/AuthContext";
+import { PlantProvider } from "./context/plant/PlantContext";
 
-import Calendar from "./pages/Calendar";
-import Dishes from "./pages/Dishes";
-import ShoppingList from "./pages/ShoppingList";
+import Identify from "./pages/Identify";
 import History from "./pages/History";
 
 function App() {
   return (
     <AuthProvider>
       <ThemeProvider theme={theme}>
-        <CssBaseline />
+        <PlantProvider>
+          <CssBaseline />
           <BrowserRouter>
             <Switch>
-              <Switch>
-                <Route exact path="/" component={Login} />
-                <AppLayout>
-                  <PrivateRoute path="/calendar" component={Calendar} />
-                  <PrivateRoute path="/dishes" component={Dishes} />
-                  <PrivateRoute path="/shopping-list" component={ShoppingList} />
-                  <PrivateRoute path="/history" component={History} />
-                </AppLayout>
-              </Switch>
+              <Route exact path="/" component={Login} />
+              <AppLayout>
+                <PrivateRoute path="/identify" component={Identify} />
+                <PrivateRoute path="/history" component={History} />
+              </AppLayout>
             </Switch>
           </BrowserRouter>
+        </PlantProvider>
       </ThemeProvider>
     </AuthProvider>
   );

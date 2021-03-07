@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 
@@ -11,6 +11,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 export default function Login({ item }: any) {
   const { Auth, dispatchAuth } = useContext(AuthContext);
   const token = localStorage.getItem("token");
+  const [errorLoginMsg, setErrorLoginMsg] = useState("");
 
   useEffect(() => {
     if (!Auth.loggedIn) {
@@ -19,9 +20,9 @@ export default function Login({ item }: any) {
         customAxios
           .get("/user/check-auth-status", {
             headers: { "Content-Type": "application/json" },
+            timeout: 10000,
           })
           .then((res) => {
-            console.log("from loginForm", res);
             dispatchAuth({ type: "LOGIN", payload: res.data });
           })
           .catch((err) => {
@@ -35,7 +36,6 @@ export default function Login({ item }: any) {
     await axios
       .post("http://localhost:3001/user/login", value)
       .then((res) => {
-        console.log(res);
         localStorage.setItem("token", res.data.token);
         dispatchAuth({
           type: "LOGIN",
@@ -43,14 +43,16 @@ export default function Login({ item }: any) {
         });
       })
       .catch((err) => {
-        console.log(err);
+        setErrorLoginMsg(err.response.data.message);
       });
   };
 
   if (Auth.loggedIn) {
-    return <Redirect to="/calendar" />;
+    return <Redirect to="/identify" />;
   } else if (Auth.invalidToken) {
-    return <LoginForm handleSubmit={handleSubmit} />;
+    return (
+      <LoginForm handleSubmit={handleSubmit} errorLoginMsg={errorLoginMsg} />
+    );
   } else if (token) {
     return (
       <CircularProgress
