@@ -18,3 +18,9 @@
 | 28.2. | 10   | Research about protecting routes,create private routes with React component,  |
 | 1.3. | 8    | Handle global context with AuthContext to fetch user token from api |
 | 2.3. | 8    | Create proper login system with login form, logout button and sign up |
+| 3.3. | 9   | Change idea to plant identifying app, rebuild components |
+| 4.3. | 8    | Bring sign up functionality in action, add Plant.id ajax call to and get plant image being recognized by Plant.id |
+| 5.3. | 8    | Add history page with data collected and stored in MongoDB |
+| 6.3. | 8    | Modify global state management with Context API |
+| 7.3. | 9    | Research and implement 2FA to the app |
+| 8.3. | 7    | Keep on working with 2FA authentication |
