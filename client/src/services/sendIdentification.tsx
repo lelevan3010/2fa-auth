@@ -17,7 +17,7 @@ export const sendIdentification = (
     toBase64(file, resolve);
   }).then((base64file) => {
     const data = {
-      api_key: "8AVKV6OtqzOqKhwKiKaMsyyi5JvgJ0jH0dBOtIkHTXv7ejkVvz",
+      api_key: process.env.REACT_APP_PLANT_API_KEY,
       images: [`${base64file}`],
       modifiers: ["crops_fast", "similar_images"],
       plant_language: "en",

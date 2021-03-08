@@ -4,12 +4,18 @@ import { reducer } from "./Reducer";
 type Action = { type: String; payload: {} };
 
 interface AuthContext {
-  Auth: { loggedIn: Boolean; invalidToken?: Boolean };
+  Auth: { 
+    loggedIn:      Boolean; 
+    invalidToken?: Boolean,
+    mfaEnabled?:   Boolean
+  };
+
   dispatchAuth: Dispatch<Action>;
 }
 
 const initialState = {
-  loggedIn: false,
+  loggedIn:   false,
+  mfaEnabled: false
 };
 
 const initialContext: AuthContext = {

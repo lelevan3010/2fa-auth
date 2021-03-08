@@ -8,13 +8,9 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import { LinearProgress } from "@material-ui/core";
 
-import OAuthLoginButton from "../OAuthLoginButton/OAuthLoginButton";
-
-import GoogleIcon from "../../assets/google.png";
-
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    loginForm: {
+    mfaForm: {
       display: "flex",
       flexDirection: "column",
     },
@@ -31,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-function LoginForm({ handleSubmit, errorLoginMsg, loading }: any) {
+function MfaForm({ handleSubmit, errorLoginMsg, loading }: any) {
   const classes = useStyles();
   let redirectURI;
   if (process.env.NODE_ENV === "production") {
@@ -39,8 +35,7 @@ function LoginForm({ handleSubmit, errorLoginMsg, loading }: any) {
   } else {
     redirectURI = "http://localhost:3001";
   }
-  const googleLink = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.REACT_APP_GOOGLE_CLIENT_ID}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile&redirect_uri=${redirectURI}`;
-
+  
   return (
     <Paper
       elevation={3}
@@ -60,48 +55,19 @@ function LoginForm({ handleSubmit, errorLoginMsg, loading }: any) {
           style={{ borderRadius: 6, margin: "0 -30px" }}
         />
       )}
-      <h3 style={{ textAlign: "center" }}>Log in to your account</h3>
-      <OAuthLoginButton
-        name="Google"
-        link={googleLink}
-        icon={GoogleIcon}
-        background="#4286F4"
-      />
-      <div style={{ borderTop: "1px solid darkgray", margin: "25px 0px" }}>
-        <span
-          style={{
-            backgroundColor: "white",
-            transform: "translateY(-15px)",
-            position: "absolute",
-            left: "50%",
-            marginLeft: "-17px",
-            padding: "0 5px",
-          }}
-        >
-          or
-        </span>
-      </div>
+      <h3 style={{ textAlign: "center" }}>Enter PIN code</h3>
       <Formik
         initialValues={{ logUsername: "", logPassword: "" }}
         onSubmit={handleSubmit}
       >
         {({ isSubmitting, values }) => (
-          <Form className={classes.loginForm}>
+          <Form className={classes.mfaForm}>
             <Field
               component={TextField}
               variant="outlined"
-              label="User name"
-              name="logUsername"
+              label="PIN code"
+              name="code"
               type="text"
-              required={true}
-              className={classes.loginInput}
-            />
-            <Field
-              component={TextField}
-              variant="outlined"
-              label="Password"
-              name="logPassword"
-              type="password"
               required={true}
               className={classes.loginInput}
             />
@@ -110,7 +76,7 @@ function LoginForm({ handleSubmit, errorLoginMsg, loading }: any) {
               className={classes.loginButton}
               disabled={isSubmitting}
             >
-              Log In
+              Submit
             </Button>
           </Form>
         )}
@@ -118,11 +84,8 @@ function LoginForm({ handleSubmit, errorLoginMsg, loading }: any) {
       <p style={{ color: "red", textAlign: "center", marginBottom: 0 }}>
         {errorLoginMsg}
       </p>
-      <h4 style={{ textAlign: "center" }}>
-        New member? <Link to="/signup">Sign Up</Link>
-      </h4>
     </Paper>
   );
 }
 
-export default LoginForm;
+export default MfaForm;

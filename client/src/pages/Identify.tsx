@@ -81,7 +81,7 @@ function Identify() {
     <AppLayout>
       <Grid className={classes.formPaper} container style={{ maxWidth: 986 }}>
         <Grid item xs={12}>
-          <Paper style={{ padding: 12 }}>
+          <Paper style={{ padding: 12, marginBottom: 12 }}>
             <Grid container>
               <Grid item xs={12} md={9} lg={9}>
                 <ErrorBoundary>
@@ -122,7 +122,7 @@ function Identify() {
           )}
         </Grid>
       </Grid>
-      <Grid container style={{ maxWidth: 986 }}>
+      <Grid container spacing={2} style={{ maxWidth: 986 }}>
         {mappedPlantInfo}
       </Grid>
     </AppLayout>

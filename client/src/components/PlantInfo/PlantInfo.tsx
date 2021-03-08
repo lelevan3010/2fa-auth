@@ -15,7 +15,7 @@ function PlantInfo({
   probability,
 }: any) {
   return (
-    <Card style={{ margin: 24 }}>
+    <Card>
       <CardMedia
         style={{ height: 200 }}
         image={similarImg}
