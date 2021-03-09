@@ -24,3 +24,4 @@
 | 6.3. | 8    | Modify global state management with Context API |
 | 7.3. | 9    | Research and implement 2FA to the app |
 | 8.3. | 7    | Keep on working with 2FA authentication |
+| 9.3. | 7    | Manual test, fix bugs, config and deploy |
