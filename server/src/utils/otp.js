@@ -1,4 +1,5 @@
-import crypto from 'crypto';
+// Implementation of 2fa from https://medium.com/onfrontiers-engineering/two-factor-authentication-flow-with-node-and-react-7cbdf249f13import crypto from 'crypto';
+
 import base32Decode from 'base32-decode';
 
 export function generateHOTP(secret, counter) {
