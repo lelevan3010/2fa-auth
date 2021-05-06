@@ -1,4 +1,4 @@
-# Two-factor authentication app
+# Plant identify with two-factor authentication app
 [![Heroku](https://heroku-badge.herokuapp.com/?app=heroku-badge)](https://knowyourplant.herokuapp.com)
 [https://knowyourplant.herokuapp.com](https://knowyourplant.herokuapp.com)<br/>
 ### Author: Van Nguyen
