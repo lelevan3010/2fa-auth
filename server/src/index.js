@@ -1,6 +1,6 @@
 import bodyParser from 'body-parser'
 import cors from 'cors'
-import session from 'express-session'
+require('express-async-errors')
 
 import { app } from './server'
 import { connectDb, errorDb } from './services/db'
@@ -24,14 +24,6 @@ const server = app.listen(port, () => {
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-// app.use(
-//   session({
-//     //use sessions for tracking logins
-//     secret: process.env.SESSION_SECRET,
-//     resave: true,
-//     saveUninitialized: false,
-//   }),
-// )
 
 // Routes
 app.get('/status', (req, res) => {

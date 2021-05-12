@@ -7,9 +7,8 @@ export const validateSignUp = async (req, res, next) => {
             await UserModel.countDocuments({email: email},(err, count)=>{
                 if(count > 0){
                     return res.status(409).send('Email already exists!')
-                } else {
-                    next()
-                }
+                } 
+                 next()
             })
         } else {
             next()

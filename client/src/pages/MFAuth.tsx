@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 
 import MfaForm from "../components/MfaForm/MfaForm";
 import { AuthContext } from "../context/auth/AuthContext";
-import { setAuthToken, customAxios } from "../services/setAuthToken";
+import { customAxios } from "../services/setAuthToken";
 
 export default function MFAuth({ item }: any) {
   const { Auth, dispatchAuth } = useContext(AuthContext);
